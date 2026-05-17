@@ -19,7 +19,7 @@
             <!-- Top Nav -->
             <nav class="top-nav">
                 <div class="nav-brand">
-                    <span class="logo-text">YOUR CAR</span>
+                    <span class="logo-text">RIDE NEPAL</span>
                 </div>
                 <div class="nav-links">
                     <a href="#" class="active">Home</a>
@@ -28,7 +28,13 @@
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="nav-actions">
-                    <button class="icon-btn">🔍</button>
+                    <div class="nav-search-container">
+                        <form action="search" method="get" class="search-form-nav">
+                            <input type="text" id="navSearchInput" name="query" placeholder="Search Ride Nepal.." class="nav-search-input" autocomplete="off">
+                            <button type="submit" class="nav-search-btn">🔍</button>
+                        </form>
+                        <div id="navSearchResults" class="live-search-panel nav-results"></div>
+                    </div>
                     <a href="login" class="btn-signin">Sign In</a>
                 </div>
             </nav>
@@ -37,59 +43,80 @@
             <section class="hero-section">
                 <div class="hero-bg">
                     <img src="${pageContext.request.contextPath}/images/car_hero.png" alt="Hero Car">
-                    <div class="hero-gradient"></div>
+                    <div class="hero-overlay"></div>
                 </div>
-                <div class="hero-content">
-                    <h1 class="hero-title" style="font-size: 5rem; line-height: 1.1;">
-                        <span class="title-kinetic" style="display: block; font-style: normal;">VEHICLE RENT IN</span>
-                        <span class="title-authority" style="display: block;">NEPAL</span>
+                <div class="hero-content centered">
+                    <h1 class="hero-title">
+                        FERRARI PUROSANGUE
+                        <span>HANDLING SPECIALE</span>
                     </h1>
-                    <div
-                        style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 200; letter-spacing: 4px; color: rgba(255,255,255,0.6); margin-bottom: 20px; text-transform: uppercase;">
-                        Rental Service
-                    </div>
-                    <p
-                        style="font-size: 0.9rem; letter-spacing: 1px; color: var(--blue); font-weight: 700; margin-bottom: 24px;">
-                        Rent Per Day | Rent Per Destination | Rent Per Hour
-                    </p>
-                    <p class="hero-desc">
-                        Precision-engineered performance at your fingertips.
-                        Experience the world's most exclusive fleet with seamless
-                        digital orchestration.
-                    </p>
-
-                    <!-- Booking Widget -->
-                    <div class="booking-widget">
-                        <div class="widget-field">
-                            <label>PICK-UP LOCATION</label>
-                            <div class="widget-input">
-                                <span class="icon">📍</span>
-                                <input type="text" value="Kathmandu, Nepal" readonly>
-                            </div>
+                    <a href="#booking" class="btn-discover-circular">
+                        <span>DISCOVER</span>
+                        <div class="circle-arrow">
+                            <span class="chevron"></span>
                         </div>
-                        <div class="widget-field">
-                            <label>FLEET SELECTION</label>
-                            <div class="widget-input">
-                                <span class="icon">🚗</span>
-                                <select>
-                                    <option>Performance</option>
-                                    <option>Luxury</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="widget-field">
-                            <label>DURATION</label>
-                            <div class="widget-input">
-                                <span class="icon">📅</span>
-                                <input type="text" value="24 C" readonly>
-                            </div>
-                        </div>
-                        <form action="book" method="post" style="width:100%;">
-                            <input type="hidden" name="carId" value="1">
-                            <button type="submit" class="widget-btn">Find Your Fleet</button>
-                        </form>
-                    </div>
+                    </a>
                 </div>
+
+                <!-- Original Booking Widget preserved but repositioned at the bottom for "neat and tidy" look -->
+                <div class="booking-widget" style="margin-top: 4rem; position: relative; z-index: 20;">
+                    <div class="widget-field">
+                        <label>PICK-UP LOCATION</label>
+                        <div class="widget-input">
+                            <span class="icon">📍</span>
+                            <input type="text" value="Kathmandu, Nepal" readonly>
+                        </div>
+                    </div>
+                    <div class="widget-field">
+                        <label>FLEET SELECTION</label>
+                        <div class="widget-input">
+                            <span class="icon">🚗</span>
+                            <select>
+                                <option>Performance</option>
+                                <option>Luxury</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="widget-field">
+                        <label>DURATION</label>
+                        <div class="widget-input">
+                            <span class="icon">📅</span>
+                            <input type="text" value="24 C" readonly>
+                        </div>
+                    </div>
+                    <form action="book" method="post" style="width:auto;">
+                        <input type="hidden" name="carId" value="1">
+                        <button type="submit" class="widget-btn">Find Fleet</button>
+                    </form>
+                </div>
+
+                <!-- Search Results Section -->
+                <c:if test="${not empty searchResult}">
+                    <div class="search-result-overlay" id="searchResult">
+                        <div class="result-card">
+                            <button class="close-btn" onclick="this.parentElement.parentElement.remove()">×</button>
+                            <div class="result-badge">1 Search Found</div>
+                            <div class="result-content">
+                                <img src="${pageContext.request.contextPath}/images/car_${searchResult.id}.png" 
+                                     onerror="this.src='${pageContext.request.contextPath}/images/car_hero.png'" alt="${searchResult.model}">
+                                <div class="result-info">
+                                    <h3>${searchResult.make} ${searchResult.model}</h3>
+                                    <p>${searchResult.type} · ${searchResult.hp} HP</p>
+                                    <div class="price">NPR ${searchResult.pricePerDay}/day</div>
+                                    <form action="book" method="post">
+                                        <input type="hidden" name="carId" value="${searchResult.id}">
+                                        <button type="submit" class="book-link">Book This Model &rarr;</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${not empty searchError}">
+                    <div class="search-error-msg">
+                        ${searchError}
+                    </div>
+                </c:if>
             </section>
 
             <!-- Curated Collections -->
@@ -420,8 +447,8 @@
             </section>
 
             <footer class="landing-footer" id="contact">
-                <div class="f-logo">YOUR CAR</div>
-                <p>&copy; 2024 YOUR CAR. ALL RIGHTS RESERVED.</p>
+                <div class="f-logo">RIDE NEPAL</div>
+                <p>&copy; 2024 RIDE NEPAL. ALL RIGHTS RESERVED.</p>
                 <div class="f-links">
                     <a href="#">PRIVACY POLICY</a>
                     <a href="#">TERMS OF SERVICE</a>
@@ -429,6 +456,100 @@
                     <a href="#">CAREERS</a>
                 </div>
             </footer>
-        </body>
+            <script>
+            const contextPath = '${pageContext.request.contextPath}';
+            const searchInput = document.getElementById('liveSearchInput');
+            const resultsPanel = document.getElementById('liveSearchResults');
 
-        </html>
+            searchInput.addEventListener('input', async (e) => {
+                const query = e.target.value.trim();
+                if (query.length < 2) {
+                    resultsPanel.style.display = 'none';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${contextPath}/api/search?query=` + encodeURIComponent(query));
+                    const results = await response.json();
+                    
+                    if (results.length > 0) {
+                        resultsPanel.innerHTML = results.map(car => `
+                            <div class="search-item" onclick="selectCar(${car.id}, '${car.make} ${car.model}')">
+                                <img src="${contextPath}/images/car_${car.id}.png" 
+                                     onerror="this.src='${contextPath}/images/car_hero.png'" alt="${car.model}">
+                                <div class="item-info">
+                                    <span class="item-name">${car.make} ${car.model}</span>
+                                    <span class="item-price">NPR ${car.pricePerDay}/day</span>
+                                </div>
+                            </div>
+                        `).join('');
+                        resultsPanel.style.display = 'block';
+                    } else {
+                        resultsPanel.innerHTML = '<div class="no-results">No model found</div>';
+                        resultsPanel.style.display = 'block';
+                    }
+                } catch (err) {
+                    console.error('Search error:', err);
+                }
+            });
+
+            function selectCar(id, name) {
+                searchInput.value = name;
+                resultsPanel.style.display = 'none';
+                // Update hidden input in the form
+                document.querySelector('input[name="carId"]').value = id;
+            }
+
+            const navSearchInput = document.getElementById('navSearchInput');
+            const navResultsPanel = document.getElementById('navSearchResults');
+
+            navSearchInput.addEventListener('input', async (e) => {
+                const query = e.target.value.trim();
+                if (query.length < 2) {
+                    navResultsPanel.style.display = 'none';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${contextPath}/api/search?query=` + encodeURIComponent(query));
+                    const results = await response.json();
+                    
+                    if (results.length > 0) {
+                        navResultsPanel.innerHTML = results.map(car => `
+                            <div class="search-item" onclick="selectNavCar(${car.id}, '${car.make} ${car.model}')">
+                                <img src="${contextPath}/images/car_${car.id}.png" 
+                                     onerror="this.src='${contextPath}/images/car_hero.png'" alt="${car.model}">
+                                <div class="item-info">
+                                    <span class="item-name">${car.make} ${car.model}</span>
+                                    <span class="item-price">NPR ${car.pricePerDay}/day</span>
+                                </div>
+                            </div>
+                        `).join('');
+                        navResultsPanel.style.display = 'block';
+                    } else {
+                        navResultsPanel.innerHTML = '<div class="no-results">No model found</div>';
+                        navResultsPanel.style.display = 'block';
+                    }
+                } catch (err) {
+                    console.error('Search error:', err);
+                }
+            });
+
+            function selectNavCar(id, name) {
+                navSearchInput.value = name;
+                navResultsPanel.style.display = 'none';
+                window.location.href = `search?query=` + encodeURIComponent(name);
+            }
+
+            // Close panels when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.live-search-field')) {
+                    resultsPanel.style.display = 'none';
+                }
+                if (!e.target.closest('.nav-search-container')) {
+                    navResultsPanel.style.display = 'none';
+                }
+            });
+        </script>
+    </body>
+</html>

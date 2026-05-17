@@ -36,48 +36,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.activation-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.el-api-4.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.servlet-api-5.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.servlet.jsp.jstl-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.servlet.jsp.jstl-api-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/jar_files/jakarta.xml.bind-api-3.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/abhishekkumarthakur/Desktop/Java Jar Files/mysql-connector-j-9.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>

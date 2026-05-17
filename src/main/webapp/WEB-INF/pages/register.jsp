@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - Your Car</title>
+    <title>Create Account - Ride Nepal</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
@@ -21,7 +21,7 @@
             
             <div class="hero-text-block">
                 <a href="home" class="logo-link">
-                    <h1>YOUR CAR</h1>
+                    <h1>RIDE NEPAL</h1>
                 </a>
                 <p>Unlock access to the world's most sophisticated automotive fleet. Precision engineering meets seamless digital control.</p>
             </div>
@@ -60,7 +60,7 @@
                     <div class="form-group-full">
                         <label for="email">EMAIL ADDRESS</label>
                         <div class="input-wrapper">
-                            <input type="email" id="email" name="email" required placeholder="alex@yourcar">
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
                         </div>
                     </div>
 
@@ -75,7 +75,7 @@
                         <div class="form-group-half">
                             <label for="password">PASSWORD</label>
                             <div class="input-wrapper">
-                                <input type="password" id="password" name="password" required placeholder="••••••••">
+                                <input type="password" id="password" name="password" required minlength="6" placeholder="Enter your password">
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="legal-disclaimer">
-                    <p>BY PROCEEDING, YOU AGREE TO THE YOUR CAR TERMS OF SERVICE AND OUR MACHINE-LEARNING DATA PRIVACY PROTOCOLS.</p>
+                    <p>BY PROCEEDING, YOU AGREE TO THE RIDE NEPAL TERMS OF SERVICE AND OUR MACHINE-LEARNING DATA PRIVACY PROTOCOLS.</p>
                 </div>
             </div>
         </div>
@@ -98,14 +98,14 @@
 
     <!-- Full Bleed Footer -->
     <footer class="split-footer">
-        <div class="f-logo">YOUR CAR</div>
+        <div class="f-logo">RIDE NEPAL</div>
         <div class="f-links">
             <a href="#">PRIVACY POLICY</a>
             <a href="#">TERMS OF SERVICE</a>
             <a href="#">FLEET MANAGEMENT</a>
             <a href="#">CAREERS</a>
         </div>
-        <p class="f-copy">&copy; 2024 YOUR CAR. ALL RIGHTS RESERVED.</p>
+        <p class="f-copy">&copy; 2024 RIDE NEPAL. ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>

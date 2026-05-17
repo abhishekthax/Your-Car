@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Car - Executive Control</title>
+    <title>Ride Nepal - Executive Control</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -420,7 +420,7 @@
         <a href="${pageContext.request.contextPath}/home" class="brand" style="text-decoration: none; color: inherit;">
             <div class="brand-icon">Y</div>
             <div class="brand-text">
-                <h3>YOUR CAR</h3>
+                <h3>RIDE NEPAL</h3>
                 <span>Executive Control</span>
             </div>
         </a>

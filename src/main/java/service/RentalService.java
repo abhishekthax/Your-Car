@@ -88,6 +88,59 @@ public class RentalService {
     }
 
     // Fleet Methods
+    public boolean addCar(Car car) {
+        String sql = "INSERT INTO cars (make, model, type, transmission, pricePerDay, imageUrl, status, hp, accel060) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = dbconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, car.getMake());
+            ps.setString(2, car.getModel());
+            ps.setString(3, car.getType());
+            ps.setString(4, car.getTransmission());
+            ps.setDouble(5, car.getPricePerDay());
+            ps.setString(6, car.getImageUrl());
+            ps.setString(7, car.getStatus());
+            ps.setInt(8, car.getHp());
+            ps.setString(9, car.getAccel060());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateCar(Car car) {
+        String sql = "UPDATE cars SET make=?, model=?, type=?, transmission=?, pricePerDay=?, imageUrl=?, status=?, hp=?, accel060=? WHERE id=?";
+        try (Connection conn = dbconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, car.getMake());
+            ps.setString(2, car.getModel());
+            ps.setString(3, car.getType());
+            ps.setString(4, car.getTransmission());
+            ps.setDouble(5, car.getPricePerDay());
+            ps.setString(6, car.getImageUrl());
+            ps.setString(7, car.getStatus());
+            ps.setInt(8, car.getHp());
+            ps.setString(9, car.getAccel060());
+            ps.setInt(10, car.getId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteCar(int carId) {
+        String sql = "DELETE FROM cars WHERE id=?";
+        try (Connection conn = dbconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, carId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public List<Car> getFleet() {
         List<Car> fleet = new ArrayList<>();
         String sql = "SELECT * FROM cars";
@@ -115,7 +168,50 @@ public class RentalService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        // Mock data fallback for testing/coursework if DB is empty
+        if (fleet.isEmpty()) {
+            fleet.add(new Car(1, "Lamborghini", "Urus", "Performance", "Auto", 120000, "car_hero.png", "Available", 650, "3.6s"));
+            fleet.add(new Car(2, "BMW", "M8 Competition", "Luxury", "Auto", 85000, "car_2.png", "Available", 617, "3.0s"));
+            fleet.add(new Car(3, "Ferrari", "Purosangue", "Performance", "Auto", 150000, "car_3.png", "Available", 715, "3.3s"));
+            fleet.add(new Car(4, "Porsche", "Panamera Turbo", "Luxury", "Auto", 95000, "car_4.png", "Available", 620, "2.9s"));
+        }
+        
         return fleet;
+    }
+
+    /**
+     * Binary Search Implementation to find a car by its model name.
+     * The fleet is sorted by model name before performing the search.
+     */
+    public Car searchCarByModel(String modelName) {
+        List<Car> fleet = getFleet();
+        if (fleet.isEmpty() || modelName == null) return null;
+
+        // Sort fleet by model name for binary search, handling potential nulls
+        fleet.sort((c1, c2) -> {
+            String m1 = (c1.getModel() == null) ? "" : c1.getModel();
+            String m2 = (c2.getModel() == null) ? "" : c2.getModel();
+            return m1.compareToIgnoreCase(m2);
+        });
+
+        int low = 0;
+        int high = fleet.size() - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            Car midCar = fleet.get(mid);
+            int cmp = midCar.getModel().compareToIgnoreCase(modelName);
+
+            if (cmp < 0) {
+                low = mid + 1;
+            } else if (cmp > 0) {
+                high = mid - 1;
+            } else {
+                return midCar; // Found
+            }
+        }
+        return null; // Not found
     }
 
     // Rental Methods

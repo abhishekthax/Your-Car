@@ -423,10 +423,10 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <ul class="nav-list">
-            <a href="#" class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/fleet" class="nav-item">
                 <span class="icon">🚘</span> FLEET
             </a>
-            <a href="#" class="nav-item active">
+            <a href="${pageContext.request.contextPath}/admin/dashboard" class="nav-item active">
                 <span class="icon">📅</span> RENTALS
             </a>
             <a href="#" class="nav-item">

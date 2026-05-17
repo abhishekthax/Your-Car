@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Your Car</title>
+    <title>Login - Ride Nepal</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
@@ -21,7 +21,7 @@
             <div class="hero-content">
                 <div class="brand">
                     <a href="home" class="logo-link">
-                        <span class="logo-text">YOUR CAR</span>
+                        <span class="logo-text">RIDE NEPAL</span>
                         <span class="logo-tag">PRECISION CONTROL</span>
                     </a>
                 </div>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="hero-footer">
-                    <p>&copy; 2024 YOUR CAR.</p>
+                    <p>&copy; 2024 RIDE NEPAL.</p>
                     <a href="#">PRIVACY POLICY</a>
                     <a href="#">TERMS OF SERVICE</a>
                 </div>
@@ -72,7 +72,7 @@
                         <label for="email">EMAIL ADDRESS</label>
                         <div class="input-wrapper">
                             <span class="icon-prefix">@</span>
-                            <input type="email" id="email" name="email" required placeholder="driver@yourcar.com">
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                         </div>
                         <div class="input-wrapper">
                             <span class="icon-prefix">🔒</span>
-                            <input type="password" id="password" name="password" required placeholder="••••••••">
+                            <input type="password" id="password" name="password" required minlength="6" placeholder="Enter your password">
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@
                 </div>
                 
                 <div class="auth-switch" style="margin-top: 15px;">
-                    <a href="#" onclick="document.getElementById('email').value='admin@gmail.com'; document.getElementById('password').value='admin123'; document.querySelector('.auth-form').submit(); return false;" style="color: var(--blue); font-size: 0.85rem;">Sign in as Admin</a>
+                    <a href="#" onclick="document.getElementById('email').value='admin@ridenepal.com'; document.getElementById('password').value='admin123'; document.querySelector('.auth-form').submit(); return false;" style="color: var(--blue); font-size: 0.85rem;">Sign in as Admin</a>
                 </div>
             </div>
             
